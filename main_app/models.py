@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Reel(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
+    description = models.TextField(null=True)
     field0 = models.CharField(max_length=30, default='1')
     field1 = models.CharField(max_length=30, default='2')
     field2 = models.CharField(max_length=30, default='3')
@@ -21,7 +21,7 @@ class Reel(models.Model):
 class ReelSet(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
-    description = models.TextField()
+    description = models.TextField(null=True)
     reels = models.ManyToManyField(Reel, verbose_name='list of reels')
 
     def __str__(self):
@@ -33,7 +33,7 @@ class ReelSet(models.Model):
 
 class DefaultReel(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
+    description = models.TextField(null=True)
     field0 = models.CharField(max_length=30, default='1')
     field1 = models.CharField(max_length=30, default='2')
     field2 = models.CharField(max_length=30, default='3')
@@ -49,7 +49,7 @@ class DefaultReel(models.Model):
 
 class DefaultReelSet(models.Model):
     name = models.CharField(max_length=30)
-    description = models.TextField()
+    description = models.TextField(null=True)
     reels = models.ManyToManyField(DefaultReel, verbose_name='list of default reels')
 
     def __str__(self):
