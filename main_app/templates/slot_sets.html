@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %} <title>Slot sets</title> {% endblock %}
+
+{% block content %}
+<h1>Welcome to Slot Sets list</h1>
+<h2>There will be shown all Slot Sets names</h2>
+<p>Now there is {{ count }} Slot Sets:</p>
+<p></p>
+<ul>
+    {% for obj in objects %}
+    <li>{{ obj.name }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
