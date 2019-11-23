@@ -1,10 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Hello world =)</h1>
 
-<h2>Dynamic content test</h2>
+<p>Now there are {{ all_reelsets.count}} custom slot sets and {{ all_default_reelsets.count }} default reel sets:</p>
+<p>Custom:</p>
+<ul>
+    {% for custom_reel in all_reelsets %}
+    <li>{{ custom_reel.name }}</li>
+    {% endfor %}
+</ul>
 
-<p>Now there is {{ num_slotsets }} slot sets. You can make more!</p>
+<p>Default:</p>
+<ul>
+    {% for default_reel in all_default_reelsets %}
+    <li>{{ default_reel.name }}</li>
+    {% endfor %}
+</ul>
 
 {% endblock %}

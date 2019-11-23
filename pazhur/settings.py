@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '2v0k!uf=g&x9t&y29na6=_p2kl@17#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', True)
 
-ALLOWED_HOSTS = ['pazhur.herokuapp.com']
+ALLOWED_HOSTS = ['pazhur.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'main_app',
-    'api',
 ]
 
 MIDDLEWARE = [

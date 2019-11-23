@@ -1,19 +1,20 @@
 from django.shortcuts import render
-from .models import SlotSet
+from .models import *
 
 
 # Create your views here.
 def index(request):
     context = {
-        'num_slotsets': SlotSet.objects.all().count(),
+        'all_reelsets': ReelSet.objects.all(),
+        'all_default_reelsets': DefaultReelSet.objects.all(),
     }
     return render(request, 'index.html', context)
 
 
-def slot_sets(request):
+def reel_sets(request):
     context = {
-        'count': SlotSet.objects.all().count(),
-        'objects': SlotSet.objects.all(),
+        'all_reelsets': ReelSet.objects.all(),
+        'all_default_reelsets': DefaultReelSet.objects.all(),
     }
 
-    return render(request, 'slot_sets.html', context)
+    return render(request, 'reel_sets.html', context)
