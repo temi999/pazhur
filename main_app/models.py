@@ -36,6 +36,7 @@ class ReelSet(models.Model):
 
 class DefaultReel(models.Model):
     name = models.CharField(max_length=30)
+    reelset = models.ForeignKey('DefaultReelSet', related_name='reels', on_delete=models.CASCADE)
     description = models.TextField(null=True)
     field0 = models.CharField(max_length=MAX_FIELD_LENGTH, default='1')
     field1 = models.CharField(max_length=MAX_FIELD_LENGTH, default='2')
@@ -53,7 +54,6 @@ class DefaultReel(models.Model):
 class DefaultReelSet(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(null=True)
-    reels = models.ManyToManyField(DefaultReel, verbose_name='list of default reels')
 
     def __str__(self):
         return self.name

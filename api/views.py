@@ -1,9 +1,12 @@
 from rest_framework import generics
 from rest_framework import permissions
 from .permissions import IsOwnerOrReadOnly
-from main_app.models import Reel, ReelSet
+from main_app.models import Reel, ReelSet, DefaultReel, DefaultReelSet
 from django.contrib.auth.models import User
-from api.serializers import ReelSerializer, ReelSetSerializer, UserSerializer
+from api.serializers import (ReelSerializer, ReelSetSerializer,
+                             DefaultReelSetSerializer, DefaultReelSerializer,
+                             UserSerializer
+                             )
 
 
 class ReelList(generics.ListCreateAPIView):
@@ -38,6 +41,21 @@ class ReelSetDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ReelSetSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly]
+
+
+class DefaultReelSetList(generics.ListAPIView):
+    queryset = DefaultReelSet.objects.all()
+    serializer_class = DefaultReelSetSerializer
+
+
+class DefaultReelSetDetail(generics.RetrieveAPIView):
+    queryset = DefaultReelSet.objects.all()
+    serializer_class = DefaultReelSetSerializer
+
+
+class DefaultReelDetail(generics.RetrieveAPIView):
+    queryset = DefaultReel.objects.all
+    serializer_class = DefaultReelSerializer
 
 
 class UserList(generics.ListAPIView):
