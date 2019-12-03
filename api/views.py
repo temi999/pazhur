@@ -54,7 +54,7 @@ class DefaultReelSetDetail(generics.RetrieveAPIView):
 
 
 class DefaultReelDetail(generics.RetrieveAPIView):
-    queryset = DefaultReel.objects.all
+    queryset = DefaultReel.objects.all()
     serializer_class = DefaultReelSerializer
 
 
