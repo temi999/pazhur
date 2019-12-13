@@ -4,19 +4,21 @@ from django.contrib.auth.models import User
 MAX_FIELD_LENGTH = 60
 
 
+class Node(models.Model):
+    owner = models.ForeignKey(User, related_name='nodes', on_delete=models.CASCADE)
+    reel = models.ForeignKey('Reel', related_name='nodes', on_delete=models.CASCADE)
+    description = models.TextField(null=True)
+    content = models.CharField(max_length=MAX_FIELD_LENGTH)
+
+    def __str__(self):
+        return self.content
+
+
 class Reel(models.Model):
     owner = models.ForeignKey(User, related_name='reels', on_delete=models.CASCADE)
     reelset = models.ForeignKey('ReelSet', related_name='reels', on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     description = models.TextField(null=True)
-    field0 = models.CharField(max_length=MAX_FIELD_LENGTH, default='1')
-    field1 = models.CharField(max_length=MAX_FIELD_LENGTH, default='2')
-    field2 = models.CharField(max_length=MAX_FIELD_LENGTH, default='3')
-    field3 = models.CharField(max_length=MAX_FIELD_LENGTH, default='4')
-    field4 = models.CharField(max_length=MAX_FIELD_LENGTH, default='5')
-    field5 = models.CharField(max_length=MAX_FIELD_LENGTH, default='6')
-    field6 = models.CharField(max_length=MAX_FIELD_LENGTH, default='7')
-    field7 = models.CharField(max_length=MAX_FIELD_LENGTH, default='8')
 
     def __str__(self):
         return self.name
@@ -34,18 +36,20 @@ class ReelSet(models.Model):
         ordering = ['owner']
 
 
+class DefaultNode(models.Model):
+    reel = models.ForeignKey('DefaultReel', related_name='nodes', on_delete=models.CASCADE)
+    description = models.TextField(null=True)
+    content = models.CharField(max_length=MAX_FIELD_LENGTH)
+
+    def __str__(self):
+        return self.content
+
+
 class DefaultReel(models.Model):
     name = models.CharField(max_length=30)
     reelset = models.ForeignKey('DefaultReelSet', related_name='reels', on_delete=models.CASCADE)
     description = models.TextField(null=True)
-    field0 = models.CharField(max_length=MAX_FIELD_LENGTH, default='1')
-    field1 = models.CharField(max_length=MAX_FIELD_LENGTH, default='2')
-    field2 = models.CharField(max_length=MAX_FIELD_LENGTH, default='3')
-    field3 = models.CharField(max_length=MAX_FIELD_LENGTH, default='4')
-    field4 = models.CharField(max_length=MAX_FIELD_LENGTH, default='5')
-    field5 = models.CharField(max_length=MAX_FIELD_LENGTH, default='6')
-    field6 = models.CharField(max_length=MAX_FIELD_LENGTH, default='7')
-    field7 = models.CharField(max_length=MAX_FIELD_LENGTH, default='8')
+    leave_empty = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

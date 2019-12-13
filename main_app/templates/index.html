@@ -1,20 +1,97 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}ПАЖУР{% endblock %}
+
+{% block navbar %}
+	<div class="left">
+		<button id="mainpage" class="navi">Главная</button>
+		<button id="myreels" class="navi">Мои барабаны</button>
+	</div>
+	<div class="right">
+		<button id="singin" class="navi">Войти</button>
+		<button id="singup" class="navi">Зарегистрироваться</button>
+	</div>
+{% endblock %}
 
 {% block content %}
-
-<p>Now there are {{ all_reelsets.count}} custom slot sets and {{ all_default_reelsets.count }} default reel sets:</p>
-<p>Custom:</p>
-<ul>
-    {% for custom_reel in all_reelsets %}
-    <li>{{ custom_reel.name }}</li>
-    {% endfor %}
-</ul>
-
-<p>Default:</p>
-<ul>
-    {% for default_reel in all_default_reelsets %}
-    <li>{{ default_reel.name }}</li>
-    {% endfor %}
-</ul>
-
+<div id="slotMachine" class="perspective-on">
+	<div id="reelsContainer">
+		<div id="container1" class="buttons-container">
+			<div id="ring1" class="ring">
+				<div id="1-1" class="slot">11</div>
+				<div id="1-2" class="slot">12</div>
+				<div id="1-3" class="slot">13</div>
+				<div id="1-4" class="slot">14</div>
+				<div id="1-5" class="slot">15</div>
+				<div id="1-6" class="slot">16</div>
+				<div id="1-7" class="slot">17</div>
+				<div id="1-8" class="slot">18</div>
+			</div>
+			<div id="cp1" class="control-panel">
+				<button class="GoSpinSlot">Spin Slot</button>
+				<button class="GoSpinReel">Spin Reel</button>
+				<button class="GoEditReel">Edit Reel</button>
+				<button class="GoDelReel">Del Reel</button>
+			</div>
+		</div>
+		<div id="container2" class="buttons-container">
+			<div id="ring2" class="ring">
+				<div id="2-1" class="slot">21</div>
+				<div id="2-2" class="slot">22</div>
+				<div id="2-3" class="slot">23</div>
+				<div id="2-4" class="slot">24</div>
+				<div id="2-5" class="slot">25</div>
+				<div id="2-6" class="slot">26</div>
+				<div id="2-7" class="slot">27</div>
+				<div id="2-8" class="slot">28</div>
+			</div>
+			<div id="cp2" class="control-panel">
+				<button class="GoSpinSlot">Spin Slot</button>
+				<button class="GoSpinReel">Spin Reel</button>
+				<button class="GoEditReel">Edit Reel</button>
+				<button class="GoDelReel">Del Reel</button>
+			</div>
+		</div>
+		<div id="container3" class="buttons-container">
+			<div id="ring3" class="ring">
+				<div id="3-1" class="slot">31</div>
+				<div id="3-2" class="slot">32</div>
+				<div id="3-3" class="slot">33</div>
+				<div id="3-4" class="slot">34</div>
+				<div id="3-5" class="slot">35</div>
+				<div id="3-6" class="slot">36</div>
+				<div id="3-7" class="slot">37</div>
+				<div id="3-8" class="slot">38</div>
+			</div>
+			<div id="cp3" class="control-panel">
+				<button class="GoSpinSlot">Spin Slot</button>
+				<button class="GoSpinReel">Spin Reel</button>
+				<button class="GoEditReel">Edit Reel</button>
+				<button class="GoDelReel">Del Reel</button>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<label>
+		<input type="checkbox" id="xray">
+		Вид сбоку
+	</label>
+</div>
+<div>
+	<button class="GoSpinSlotMachine">Spin SlotMachine</button>
+</div>
+<div>
+	<button class="GoAddReel">Add Reel</button>
+</div>
+<div>
+	<button class="GoFirstSet">Load First Set</button>
+</div>
+<div>
+	<button class="GoSecondSet">Load Second Set</button>
+</div>
+<!-- scripts -->
+<script src='{% static "jquery-3.4.1.min.js" %}'></script>
+<script src='{% static "script.js" %}'></script>
 {% endblock %}

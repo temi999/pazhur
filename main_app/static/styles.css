@@ -1,0 +1,75 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#slotMachine {
+  margin: 0 auto;
+  padding: 0 0 10px;
+}
+
+#reelsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 0 auto;
+  padding-top: 250px;
+  /* Ensure that we're in 3D space */
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: inherit; /*90*/
+  height: inherit; /*80*/
+  box-sizing: border-box;
+  opacity: 0.9; 
+  color: rgba(0,0,0,0.9);
+  background: #fff;
+  border: solid 2px #000;
+  text-align: center;
+  /*скрыть задние ячейки
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  */
+}
+
+.slot > p {
+  max-width: inherit;
+  margin: 0 auto;
+}
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /*потому что ось меняется при column*/
+  min-height: 470px;
+}
+
+.control-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.ring {
+  margin: 0 auto;
+  width: 200px;
+  height: 188px;
+  float: left;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+
+}
+
+.perspective {
+  -webkit-transform: rotateY(15deg);
+          transform: rotateY(15deg);
+  -webkit-transition: transform 1.5s ease-in-out;
+          transition: transform 1.5s ease-in-out;
+}
