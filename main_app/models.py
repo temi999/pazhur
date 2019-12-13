@@ -17,7 +17,7 @@ class Node(models.Model):
 class Reel(models.Model):
     owner = models.ForeignKey(User, related_name='reels', on_delete=models.CASCADE)
     reelset = models.ForeignKey('ReelSet', related_name='reels', on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=MAX_FIELD_LENGTH)
     description = models.TextField(null=True)
 
     def __str__(self):
@@ -26,7 +26,7 @@ class Reel(models.Model):
 
 class ReelSet(models.Model):
     owner = models.ForeignKey(User, related_name='reelsets', on_delete=models.CASCADE)
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=MAX_FIELD_LENGTH)
     description = models.TextField(null=True)
 
     def __str__(self):
@@ -46,7 +46,7 @@ class DefaultNode(models.Model):
 
 
 class DefaultReel(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=MAX_FIELD_LENGTH)
     reelset = models.ForeignKey('DefaultReelSet', related_name='reels', on_delete=models.CASCADE)
     description = models.TextField(null=True)
     leave_empty = models.BooleanField(default=False)
@@ -56,7 +56,7 @@ class DefaultReel(models.Model):
 
 
 class DefaultReelSet(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=MAX_FIELD_LENGTH)
     description = models.TextField(null=True)
 
     def __str__(self):
