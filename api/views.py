@@ -1,6 +1,7 @@
 from rest_framework import generics
 from rest_framework import permissions
 from django.shortcuts import render
+from django.http import response
 from .permissions import IsOwnerOrReadOnly
 from api.serializers import *
 
@@ -26,6 +27,13 @@ class ReelSetList(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
+    def get_queryset(self):
+        queryset = ReelSet.objects.all()
+        if self.request.user.is_authenticated:
+            owner = self.request.user
+            queryset = queryset.filter(owner=owner)
+            return queryset
 
 
 class ReelSetDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -71,7 +79,7 @@ class UserDetail(generics.RetrieveAPIView):
     serializer_class = UserSerializer
 
 
-#---------------------------------------- DOCS --------------------------------------------
+# ------------------------------------ DOCS ----------------------------------------------
 
 def documentation(request):
     return render(request, 'documentation.html', {})

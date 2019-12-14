@@ -4,23 +4,22 @@ from django.contrib.auth.models import User
 
 
 class NodeSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
-
     class Meta:
         model = Node
-        fields = ['id', 'owner', 'reel', 'description', 'content']
+        fields = ['id', 'description', 'content']
 
 
 class ReelSerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')
+    nodes = NodeSerializer(many=True, read_only=True)
 
     class Meta:
         model = Reel
-        fields = ['id', 'owner', 'reelset', 'name', 'description', 'nodes']
+        fields = ['id', 'name', 'description', 'nodes']
 
 
 class ReelSetSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
+    reels = ReelSerializer(many=True, read_only=True)
 
     class Meta:
         model = ReelSet
@@ -30,16 +29,20 @@ class ReelSetSerializer(serializers.ModelSerializer):
 class DefaultNodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = DefaultNode
-        fields = ['id', 'reel', 'description', 'content']
+        fields = ['id', 'description', 'content']
 
 
 class DefaultReelSerializer(serializers.ModelSerializer):
+    nodes = DefaultNodeSerializer(many=True, read_only=True)
+
     class Meta:
         model = DefaultReel
-        fields = ['id', 'name', 'reelset', 'description', 'nodes']
+        fields = ['id', 'name', 'description', 'nodes']
 
 
 class DefaultReelSetSerializer(serializers.ModelSerializer):
+    reels = DefaultReelSerializer(many=True, read_only=True)
+
     class Meta:
         model = DefaultReelSet
         fields = ['id', 'name', 'description', 'reels']
