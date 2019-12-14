@@ -1,5 +1,6 @@
 from rest_framework import generics
 from rest_framework import permissions
+from django.shortcuts import render
 from .permissions import IsOwnerOrReadOnly
 from api.serializers import *
 
@@ -68,3 +69,9 @@ class UserList(generics.ListAPIView):
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+#---------------------------------------- DOCS --------------------------------------------
+
+def documentation(request):
+    return render(request, 'documentation.html', {})

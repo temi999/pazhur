@@ -13,7 +13,8 @@ urlpatterns = [
     path('default_reel_sets/', views.DefaultReelSetList.as_view()),
     path('default_reel_sets/<int:pk>/', views.DefaultReelSetDetail.as_view()),
     path('users/', views.UserList.as_view()),
-    path('users/<int:pk>/', views.UserDetail.as_view())
+    path('users/<int:pk>/', views.UserDetail.as_view()),
+    path('documentation', views.documentation, name='documentation'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
